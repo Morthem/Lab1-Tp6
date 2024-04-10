@@ -8,6 +8,7 @@ package Lab1Tp6.vistas;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import Lab1Tp6.entidades.Producto;
+import java.util.TreeSet;
 
 /**
  *
@@ -190,7 +191,7 @@ public class AltaDeProductos extends javax.swing.JInternalFrame {
            categoria=(String)jcCategoria.getSelectedItem();
         
         Producto p=new Producto(codigo,descripcion,precio,stock,categoria);
-        ArrayList<Producto> lista=Menu.getProductos();
+        TreeSet<Producto> lista=Menu.getProductos();
         lista.add(p);
         JOptionPane.showMessageDialog(this,"Producto Guardado");
         limpiarCampos();

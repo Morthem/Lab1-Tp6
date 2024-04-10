@@ -7,13 +7,16 @@ package Lab1Tp6.vistas;
 
 import java.util.ArrayList;
 import Lab1Tp6.entidades.Producto;
+import java.util.TreeSet;
 
 /**
  *
  * @author Usuario
  */
 public class Menu extends javax.swing.JFrame {
-private static ArrayList<Producto> productos=new ArrayList<>();
+    //private static ArrayList<Producto> productos=new ArrayList<>();
+    private static TreeSet<Producto> productos = new TreeSet<>();
+
     /**
      * Creates new form Menu
      */
@@ -21,7 +24,7 @@ private static ArrayList<Producto> productos=new ArrayList<>();
         initComponents();
     }
     
-    public static ArrayList<Producto> getListaProductos() {
+    public static TreeSet<Producto> getListaProductos() {
         return productos;
     }
 
@@ -172,12 +175,11 @@ private static ArrayList<Producto> productos=new ArrayList<>();
         });
     }
 
-    public static ArrayList<Producto> getProductos() {
+    public static TreeSet<Producto> getProductos() {
         return productos;
     }
 
    
-    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;

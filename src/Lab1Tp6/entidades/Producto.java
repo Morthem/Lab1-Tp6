@@ -1,7 +1,7 @@
 package Lab1Tp6.entidades;
 
 
-public class Producto {
+public class Producto implements Comparable<Producto> {
     private int codigo;
     private String descripcion;
     private double precio;
@@ -10,13 +10,20 @@ public class Producto {
 
     public Producto() {
     }
-
+    
+    
+    
     public Producto(int codigo, String descripcion, double precio, int stock, String categoria) {
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.precio = precio;
         this.stock = stock;
         this.categoria = categoria;
+    }
+    
+    @Override
+    public int compareTo(Producto otro){
+        return this.codigo - otro.codigo;
     }
 
     public int getCodigo() {
