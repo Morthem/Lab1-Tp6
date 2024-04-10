@@ -2,10 +2,10 @@ package Lab1Tp6.vistas;
 
 import javax.swing.table.DefaultTableModel;
 
-public class PorNombre extends javax.swing.JInternalFrame {
+public class ConsultaNombre extends javax.swing.JInternalFrame {
     private DefaultTableModel modelo = new DefaultTableModel();
     
-    public PorNombre() {
+    public ConsultaNombre() {
         initComponents();
         armarCabecera();
     }

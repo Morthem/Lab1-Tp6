@@ -12,13 +12,13 @@ import Lab1Tp6.entidades.Producto;
  *
  * @author Nedisane
  */
-public class vistaCategoria extends javax.swing.JInternalFrame {
+public class ConsultaCategoria extends javax.swing.JInternalFrame {
 
     private DefaultTableModel modelo = new DefaultTableModel();
     /**
      * Creates new form vistaCategoria
      */
-    public vistaCategoria() {
+    public ConsultaCategoria() {
         initComponents();
         
         armarCabecera();

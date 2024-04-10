@@ -39,11 +39,12 @@ public class Menu extends javax.swing.JFrame {
 
         escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jmProductos = new javax.swing.JMenu();
-        jmiAlta = new javax.swing.JMenuItem();
-        jmiConsulta = new javax.swing.JMenuItem();
+        jmAdministracion = new javax.swing.JMenu();
+        jmiAdministrarProductos = new javax.swing.JMenuItem();
         jmCategoria = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jmiConsultaCategoria = new javax.swing.JMenuItem();
+        jmiConsultaNombre = new javax.swing.JMenuItem();
+        jmiConultaPrecio = new javax.swing.JMenuItem();
         jmSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,42 +53,50 @@ public class Menu extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 572, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGap(0, 497, Short.MAX_VALUE)
         );
 
-        jmProductos.setText("Productos");
+        jmAdministracion.setText("Administración");
 
-        jmiAlta.setText("Alta");
-        jmiAlta.addActionListener(new java.awt.event.ActionListener() {
+        jmiAdministrarProductos.setText("Productos");
+        jmiAdministrarProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiAltaActionPerformed(evt);
+                jmiAdministrarProductosActionPerformed(evt);
             }
         });
-        jmProductos.add(jmiAlta);
+        jmAdministracion.add(jmiAdministrarProductos);
 
-        jmiConsulta.setText("Consulta");
-        jmiConsulta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiConsultaActionPerformed(evt);
-            }
-        });
-        jmProductos.add(jmiConsulta);
-
-        jMenuBar1.add(jmProductos);
+        jMenuBar1.add(jmAdministracion);
 
         jmCategoria.setText("Consultas");
 
-        jMenuItem1.setText("Categoria");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jmiConsultaCategoria.setText("Categoria");
+        jmiConsultaCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jmiConsultaCategoriaActionPerformed(evt);
             }
         });
-        jmCategoria.add(jMenuItem1);
+        jmCategoria.add(jmiConsultaCategoria);
+
+        jmiConsultaNombre.setText("Nombre");
+        jmiConsultaNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiConsultaNombreActionPerformed(evt);
+            }
+        });
+        jmCategoria.add(jmiConsultaNombre);
+
+        jmiConultaPrecio.setText("Precio");
+        jmiConultaPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiConultaPrecioActionPerformed(evt);
+            }
+        });
+        jmCategoria.add(jmiConultaPrecio);
 
         jMenuBar1.add(jmCategoria);
 
@@ -110,35 +119,31 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jmiAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAltaActionPerformed
-        // TODO add your handling code here:
+    private void jmiAdministrarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAdministrarProductosActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        AltaDeProductos adp=new AltaDeProductos();
-        adp.setVisible(true);
-        escritorio.add(adp);
-        escritorio.moveToFront(adp);
-        
-        
-    }//GEN-LAST:event_jmiAltaActionPerformed
-
-    private void jmiConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsultaActionPerformed
-        escritorio.removeAll();
-        escritorio.repaint();
-        Consulta consulta = new Consulta();
+        AdministrarProductos consulta = new AdministrarProductos();
         consulta.setVisible(true);
         escritorio.add(consulta);
         escritorio.moveToFront(consulta);
-    }//GEN-LAST:event_jmiConsultaActionPerformed
+    }//GEN-LAST:event_jmiAdministrarProductosActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jmiConsultaCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsultaCategoriaActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        vistaCategoria categoria = new vistaCategoria();
+        ConsultaCategoria categoria = new ConsultaCategoria();
         categoria.setVisible(true);
         escritorio.add(categoria);
         escritorio.moveToFront(categoria);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jmiConsultaCategoriaActionPerformed
+
+    private void jmiConsultaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsultaNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmiConsultaNombreActionPerformed
+
+    private void jmiConultaPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConultaPrecioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmiConultaPrecioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,11 +189,12 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenu jmAdministracion;
     private javax.swing.JMenu jmCategoria;
-    private javax.swing.JMenu jmProductos;
     private javax.swing.JMenu jmSalir;
-    private javax.swing.JMenuItem jmiAlta;
-    private javax.swing.JMenuItem jmiConsulta;
+    private javax.swing.JMenuItem jmiAdministrarProductos;
+    private javax.swing.JMenuItem jmiConsultaCategoria;
+    private javax.swing.JMenuItem jmiConsultaNombre;
+    private javax.swing.JMenuItem jmiConultaPrecio;
     // End of variables declaration//GEN-END:variables
 }
