@@ -138,7 +138,12 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiConsultaCategoriaActionPerformed
 
     private void jmiConsultaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsultaNombreActionPerformed
-        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        ConsultaNombre nombre = new ConsultaNombre();
+        nombre.setVisible(true);
+        escritorio.add(nombre);
+        escritorio.moveToFront(nombre);
     }//GEN-LAST:event_jmiConsultaNombreActionPerformed
 
     private void jmiConultaPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConultaPrecioActionPerformed
