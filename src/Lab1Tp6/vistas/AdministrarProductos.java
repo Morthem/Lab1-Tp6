@@ -15,7 +15,10 @@ import java.util.TreeSet;
  * @author Usuario
  */
 public class AdministrarProductos extends javax.swing.JInternalFrame {
-
+    
+    private static int codigoRegistro;
+    private static boolean registroEncontrado = false;
+    
     /**
      * Creates new form AltaDeProductos
      */
@@ -47,6 +50,7 @@ public class AdministrarProductos extends javax.swing.JInternalFrame {
         jbLimpiar = new javax.swing.JButton();
         jbNuevo = new javax.swing.JButton();
         jbEliminar = new javax.swing.JButton();
+        jbModificar = new javax.swing.JButton();
 
         jlAdministrarProductos.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jlAdministrarProductos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -57,30 +61,13 @@ public class AdministrarProductos extends javax.swing.JInternalFrame {
 
         jlDescripcion.setText("Descripción:");
 
-        jtDescripcion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtDescripcionActionPerformed(evt);
-            }
-        });
-
         jlPrecio.setText("Precio:");
 
         jlStock.setText("Stock:");
 
-        jtStock.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtStockActionPerformed(evt);
-            }
-        });
-
         jlCategoria.setText("Categoría:");
 
         jcCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Limpieza", "Comestible", "Perfumeria" }));
-        jcCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcCategoriaActionPerformed(evt);
-            }
-        });
 
         jbBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
         jbBuscar.setText("Buscar");
@@ -105,9 +92,18 @@ public class AdministrarProductos extends javax.swing.JInternalFrame {
         });
 
         jbEliminar.setText("Eliminar");
+        jbEliminar.setEnabled(false);
         jbEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbEliminarActionPerformed(evt);
+            }
+        });
+
+        jbModificar.setText("Modificar");
+        jbModificar.setEnabled(false);
+        jbModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbModificarActionPerformed(evt);
             }
         });
 
@@ -141,8 +137,10 @@ public class AdministrarProductos extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jbNuevo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbEliminar)))))
-                .addGap(18, 18, 18))
+                                .addComponent(jbEliminar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbModificar)))))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,48 +172,40 @@ public class AdministrarProductos extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbLimpiar)
                     .addComponent(jbNuevo)
-                    .addComponent(jbEliminar))
-                .addGap(18, 18, 18))
+                    .addComponent(jbEliminar)
+                    .addComponent(jbModificar))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtStockActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtStockActionPerformed
-
-    private void jcCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcCategoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcCategoriaActionPerformed
-
-    private void jtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtDescripcionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtDescripcionActionPerformed
-
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here:
-        int codigo;
-        boolean entro = false;
+        
         try{        
-            codigo=Integer.parseInt(jtCodigo.getText());
+            codigoRegistro=Integer.parseInt(jtCodigo.getText());
         }catch(Exception nfe){
             JOptionPane.showMessageDialog(this, "El código debe ser un nro.");
             return;
                     
         }
+        
+        registroEncontrado = false;
         for (Producto p: Menu.getProductos()) {
-            if (p.getCodigo() == codigo) {
+            if (p.getCodigo() == codigoRegistro) {
                 jtDescripcion.setText(p.getDescripcion());
                 jtPrecio.setText(p.getPrecio()+"");
                 jtStock.setText(p.getStock()+"");
                 jcCategoria.setSelectedItem(p.getCategoria());
-                entro = true;
+                registroEncontrado = true;
             }
         }
-        if (!entro) {
+        if (!registroEncontrado) {
             JOptionPane.showMessageDialog(this, "Producto no encontrado");
         }
+        jbModificar.setEnabled(registroEncontrado);
+        jbEliminar.setEnabled(registroEncontrado);
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
@@ -225,14 +215,13 @@ public class AdministrarProductos extends javax.swing.JInternalFrame {
         double precio;
         int stock;
         String categoria;
+        
         try{
             codigo=Integer.parseInt(jtCodigo.getText());
         }catch(Exception nfe){
             JOptionPane.showMessageDialog(this, "El código debe ser un nro.");
             return;
-
         }
-
         descripcion=jtDescripcion.getText();
         try{
             precio=Double.parseDouble(jtPrecio.getText());
@@ -260,7 +249,6 @@ public class AdministrarProductos extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         
         int codigo;
-        boolean entro = false;
         String mensaje = "Producto no encontrado";
         
         try{        
@@ -271,17 +259,19 @@ public class AdministrarProductos extends javax.swing.JInternalFrame {
         }
         for (Producto p: Menu.getProductos()) {
             if (p.getCodigo() == codigo) {
-                jtDescripcion.setText(p.getDescripcion());
-                jtPrecio.setText(p.getPrecio()+"");
-                jtStock.setText(p.getStock()+"");
-                jcCategoria.setSelectedItem(p.getCategoria());
+                /*
+                jtDescripcion.setText(producto.getDescripcion());
+                jtPrecio.setText(producto.getPrecio()+"");
+                jtStock.setText(producto.getStock()+"");
+                jcCategoria.setSelectedItem(producto.getCategoria());
+                */
                 mensaje = "Se elimino el siguiente registro:\n"+
                                "    Codigo: "       +p.getCodigo()+"\n"+
                                "    Descripción: "  +p.getDescripcion()+"\n"+
                                "    Precio: "       +p.getPrecio()+"\n"+
                                "    Stock: "        +p.getStock()+"\n"+
                                "    Categoria: "    +p.getCategoria();
-                entro = true;
+                Menu.delProducto(p);
             }
         }
         JOptionPane.showMessageDialog(this, mensaje);
@@ -294,13 +284,59 @@ public class AdministrarProductos extends javax.swing.JInternalFrame {
         jtPrecio.setText("");
         jtStock.setText("");
         jcCategoria.setSelectedItem("");
+        
+        jbModificar.setEnabled(true);
+        jbEliminar.setEnabled(true);
     }//GEN-LAST:event_jbLimpiarActionPerformed
+
+    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
+
+        Producto productoAEliminar = new Producto();
+        int codigo;
+        
+        //Validacion de datos a guardar
+        try{
+            codigo = Integer.parseInt(jtCodigo.getText());
+        }catch(Exception nfe){
+            JOptionPane.showMessageDialog(this, "El código debe ser un nro.");
+            return;
+        }
+        try{
+            Double.parseDouble(jtPrecio.getText());
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this,"El precio tiene que ser un nro");
+            return;
+        }
+        try{
+            Integer.parseInt(jtStock.getText());
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this,"El stock tiene que ser un nro");
+            return;
+        }
+
+        
+        //Validamos que no exista un registro con el mismo id que queremos guardar
+        //Buscamos si existe registro con el id que está en el formulario
+        for (Producto p: Menu.getProductos()) {
+            if (codigoRegistro!=codigo && p.getCodigo() == codigo) {
+                JOptionPane.showMessageDialog(this, "Ya existe otro registro con este codigo");
+                return;
+            }
+            if (p.getCodigo() == codigoRegistro){
+                productoAEliminar = p;
+            }
+        }
+        
+        Menu.delProducto(productoAEliminar);
+        jbNuevoActionPerformed(null);
+    }//GEN-LAST:event_jbModificarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbBuscar;
     private javax.swing.JButton jbEliminar;
     private javax.swing.JButton jbLimpiar;
+    private javax.swing.JButton jbModificar;
     private javax.swing.JButton jbNuevo;
     private javax.swing.JComboBox<String> jcCategoria;
     private javax.swing.JLabel jlAdministrarProductos;

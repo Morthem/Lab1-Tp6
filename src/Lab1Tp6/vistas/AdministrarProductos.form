@@ -49,11 +49,13 @@
                               <Component id="jbNuevo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Component id="jbEliminar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jbModificar" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -93,8 +95,9 @@
                   <Component id="jbLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jbNuevo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jbEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbModificar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -123,9 +126,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtDescripcion">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtDescripcionActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jlPrecio">
       <Properties>
@@ -140,9 +140,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtStock">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtStockActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jlCategoria">
       <Properties>
@@ -159,9 +156,6 @@
           </StringArray>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcCategoriaActionPerformed"/>
-      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -196,9 +190,19 @@
     <Component class="javax.swing.JButton" name="jbEliminar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Eliminar"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbEliminarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jbModificar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Modificar"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbModificarActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

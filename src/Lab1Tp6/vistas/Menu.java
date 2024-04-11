@@ -24,9 +24,6 @@ public class Menu extends javax.swing.JFrame {
         initComponents();
     }
     
-    public static TreeSet<Producto> getListaProductos() {
-        return productos;
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -193,7 +190,10 @@ public class Menu extends javax.swing.JFrame {
     public static TreeSet<Producto> getProductos() {
         return productos;
     }
-
+    
+    public static void delProducto(Producto p){
+        productos.remove(p);
+    }
    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
