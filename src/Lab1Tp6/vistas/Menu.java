@@ -149,7 +149,7 @@ public class Menu extends javax.swing.JFrame {
     private void jmiConultaPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConultaPrecioActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        consultaPrecio precio = new consultaPrecio();
+        ConsultaPrecio precio = new ConsultaPrecio();
         precio.setVisible(true);
         escritorio.add(precio);
         escritorio.moveToFront(precio);

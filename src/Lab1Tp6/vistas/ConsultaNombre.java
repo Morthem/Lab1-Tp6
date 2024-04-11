@@ -15,7 +15,7 @@ public class ConsultaNombre extends javax.swing.JInternalFrame {
         modelo.addColumn("Descripción");
         modelo.addColumn("Precio");
         modelo.addColumn("Stock");
-        jTabla.setModel(modelo);
+        jtListadoPorNombre.setModel(modelo);
     }
     
     
@@ -28,19 +28,19 @@ public class ConsultaNombre extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jlListadoPorNombre = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTabla = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
+        jtListadoPorNombre = new javax.swing.JTable();
+        jlCaracteres = new javax.swing.JLabel();
         jtCaracteres = new javax.swing.JTextField();
 
         setResizable(true);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Listado por Nombre");
+        jlListadoPorNombre.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jlListadoPorNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlListadoPorNombre.setText("Listado por Nombre");
 
-        jTabla.setModel(new javax.swing.table.DefaultTableModel(
+        jtListadoPorNombre.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -51,10 +51,10 @@ public class ConsultaNombre extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTabla.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        jScrollPane1.setViewportView(jTabla);
+        jtListadoPorNombre.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jScrollPane1.setViewportView(jtListadoPorNombre);
 
-        jLabel2.setText("Escriba los primeros caracteres");
+        jlCaracteres.setText("Escriba los primeros caracteres");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,21 +65,21 @@ public class ConsultaNombre extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(jlCaracteres)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jtCaracteres))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jlListadoPorNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlListadoPorNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jtCaracteres)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlCaracteres, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
@@ -90,10 +90,10 @@ public class ConsultaNombre extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTabla;
+    private javax.swing.JLabel jlCaracteres;
+    private javax.swing.JLabel jlListadoPorNombre;
     private javax.swing.JTextField jtCaracteres;
+    private javax.swing.JTable jtListadoPorNombre;
     // End of variables declaration//GEN-END:variables
 }
