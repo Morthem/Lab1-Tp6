@@ -118,7 +118,7 @@ public class ConsultaCategoria extends javax.swing.JInternalFrame {
         borrarFilas();
         String cat = (String)jcCategoria.getSelectedItem();
         
-        for(Producto p: Menu.getListaProductos()) {
+        for(Producto p: Menu.getProductos()) {
             if(p.getCategoria().equals(cat)) {
                 modelo.addRow(new Object[]{
                     p.getCodigo(),
