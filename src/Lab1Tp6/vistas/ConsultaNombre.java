@@ -1,5 +1,6 @@
 package Lab1Tp6.vistas;
 
+import Lab1Tp6.entidades.Producto;
 import javax.swing.table.DefaultTableModel;
 
 public class ConsultaNombre extends javax.swing.JInternalFrame {
@@ -18,6 +19,22 @@ public class ConsultaNombre extends javax.swing.JInternalFrame {
         jtListadoPorNombre.setModel(modelo);
     }
     
+    private void borrarFilas() {
+        while (modelo.getRowCount() != 0) {
+            modelo.removeRow(0);
+        }
+    }
+    
+    private String[] crearFila(Producto p) {
+        String[] fila = new String[modelo.getColumnCount()];
+        
+        fila[0] = String.valueOf(p.getCodigo());
+        fila[1] = p.getDescripcion();
+        fila[2] = String.valueOf(p.getPrecio());
+        fila[3] = String.valueOf(p.getStock());
+        
+        return fila;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,6 +73,12 @@ public class ConsultaNombre extends javax.swing.JInternalFrame {
 
         jlCaracteres.setText("Escriba los primeros caracteres");
 
+        jtCaracteres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtCaracteresKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,6 +110,21 @@ public class ConsultaNombre extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jtCaracteresKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCaracteresKeyReleased
+        borrarFilas();
+        String jtext = jtCaracteres.getText().toLowerCase();
+
+        if (jtext.equals("")) {
+            borrarFilas();
+        } else {
+            for (Producto p : Menu.getProductos()) {
+                if (p.getDescripcion().toLowerCase().startsWith(jtext)) {
+                    modelo.addRow(crearFila(p));
+                }
+            }
+        }
+    }//GEN-LAST:event_jtCaracteresKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
