@@ -1,4 +1,7 @@
 package Lab1Tp6.vistas;
+import Lab1Tp6.entidades.Producto;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class ConsultaPrecio extends javax.swing.JInternalFrame {
@@ -18,6 +21,23 @@ public class ConsultaPrecio extends javax.swing.JInternalFrame {
         jtblProductos.setModel(modelo);
     }
     
+    private void borrarFilas() {
+        while (modelo.getRowCount() != 0) {
+            modelo.removeRow(0);
+        }
+    }
+    
+   private String[] crearFila(Producto p) {
+        String[] fila = new String[modelo.getColumnCount()];
+        
+        fila[0] = String.valueOf(p.getCodigo());
+        fila[1] = p.getDescripcion();
+        fila[2] = String.valueOf(p.getPrecio());
+        fila[3] = String.valueOf(p.getStock());
+        
+        return fila;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,11 +49,11 @@ public class ConsultaPrecio extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jtPrecioMinimo = new java.awt.TextField();
-        jtPrecioMaximo = new java.awt.TextField();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtblProductos = new javax.swing.JTable();
+        jtfPrecioMinimo = new javax.swing.JTextField();
+        jtfPrecioMaximo = new javax.swing.JTextField();
 
         setResizable(true);
 
@@ -42,15 +62,6 @@ public class ConsultaPrecio extends javax.swing.JInternalFrame {
         jLabel1.setText("BUSCAR POR PRECIO");
 
         jLabel2.setText("Entre $");
-
-        jtPrecioMinimo.setText("textField1");
-        jtPrecioMinimo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtPrecioMinimoActionPerformed(evt);
-            }
-        });
-
-        jtPrecioMaximo.setText("textField2");
 
         jLabel3.setText("y");
 
@@ -67,6 +78,23 @@ public class ConsultaPrecio extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jtblProductos);
 
+        jtfPrecioMinimo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtfPrecioMinimoKeyReleased(evt);
+            }
+        });
+
+        jtfPrecioMaximo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfPrecioMaximoActionPerformed(evt);
+            }
+        });
+        jtfPrecioMaximo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtfPrecioMaximoKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,12 +106,12 @@ public class ConsultaPrecio extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtPrecioMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtfPrecioMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtPrecioMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 297, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jtfPrecioMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18))
         );
@@ -92,32 +120,82 @@ public class ConsultaPrecio extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtPrecioMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtPrecioMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jtfPrecioMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfPrecioMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtPrecioMinimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtPrecioMinimoActionPerformed
+    private void jtfPrecioMaximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfPrecioMaximoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtPrecioMinimoActionPerformed
+    }//GEN-LAST:event_jtfPrecioMaximoActionPerformed
 
+        private boolean ValidacionDoubles(JTextField tx) {
+
+        try {
+            Double.parseDouble(tx.getText());
+        }
+        catch (Exception e) {
+            return false;
+        }
+
+        return true;
+
+    }
+    
+    
+    private void jtfPrecioMinimoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPrecioMinimoKeyReleased
+        // TODO add your handling code here:
+        borrarFilas();
+        if (ValidacionDoubles(jtfPrecioMinimo) && ValidacionDoubles(jtfPrecioMaximo)) {
+            double menor = Double.parseDouble(jtfPrecioMinimo.getText());
+            double mayor = Double.parseDouble(jtfPrecioMaximo.getText());
+            
+            for (Producto p : Menu.getProductos()) {
+                if (p.getPrecio() >= menor && p.getPrecio() <= mayor) {
+                    modelo.addRow(crearFila(p));
+                }
+            }
+        }
+    }//GEN-LAST:event_jtfPrecioMinimoKeyReleased
+
+    private void jtfPrecioMaximoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPrecioMaximoKeyReleased
+        // TODO add your handling code here:
+        borrarFilas();
+        if (ValidacionDoubles(jtfPrecioMinimo) && ValidacionDoubles(jtfPrecioMaximo)) {
+            double menor = Double.parseDouble(jtfPrecioMinimo.getText());
+            double mayor = Double.parseDouble(jtfPrecioMaximo.getText());
+            
+            for (Producto p : Menu.getProductos()) {
+                if (p.getPrecio() >= menor && p.getPrecio() <= mayor) {
+                    modelo.addRow(crearFila(p));
+                }
+            }
+        }
+    }//GEN-LAST:event_jtfPrecioMaximoKeyReleased
+
+    
+
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private java.awt.TextField jtPrecioMaximo;
-    private java.awt.TextField jtPrecioMinimo;
     private javax.swing.JTable jtblProductos;
+    private javax.swing.JTextField jtfPrecioMaximo;
+    private javax.swing.JTextField jtfPrecioMinimo;
     // End of variables declaration//GEN-END:variables
 }
